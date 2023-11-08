@@ -52,17 +52,16 @@ class Maps extends CI_Controller
         }
 
         $maxJumlah = max($dataPasien['kgb']['jml'], $dataPasien['kgt']['jml'], $dataPasien['pd']['jml']);
-
+        $minJumlah = min($dataPasien['kgb']['jml'], $dataPasien['kgt']['jml'], $dataPasien['pd']['jml']);
+        // dd($minJumlah);
         foreach ($dataPasien as $key => $val) {
             if ($dataPasien[$key]['jml'] == $maxJumlah) {
                 $dataPasien[$key]['color'] = 'red';
-            } elseif ($dataPasien[$key]['jml'] == $maxJumlah - 1) {
+            } elseif ($dataPasien[$key]['jml'] == $minJumlah) {
                 $dataPasien[$key]['color'] = 'purple';
-            } elseif ($dataPasien[$key]['jml'] == $maxJumlah - 2) {
-                $dataPasien[$key]['color'] = 'blue';
             } else {
-                $dataPasien[$key]['color'] = 'green';
-            }
+                $dataPasien[$key]['color'] = 'blue';
+            } 
         }
 
         $data['pasien'] = $dataPasien;
